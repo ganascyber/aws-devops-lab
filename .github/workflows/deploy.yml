@@ -1,0 +1,25 @@
+name: Deploy site
+
+on:
+  push:
+    branches: [main]
+    paths: ["site/**"]
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::381492296391:role/github-deploy-site
+          aws-region: us-east-1
+
+      - run: aws s3 sync site/ s3://emmanuelgana-site --delete
+
+      - run: aws cloudfront create-invalidation --distribution-id ER5G1CYR9KP0V --paths "/*"
