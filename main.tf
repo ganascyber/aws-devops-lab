@@ -29,3 +29,15 @@ resource "aws_route53_zone" "main" {
   name    = "emmanuelgana.dev"
   comment = "HostedZone created by Route53 Registrar"
 }
+
+resource "aws_s3_bucket" "site" {
+  bucket = "emmanuelgana-site"
+}
+
+resource "aws_s3_bucket_public_access_block" "site" {
+  bucket                  = aws_s3_bucket.site.id
+  block_public_acls       = true
+  block_public_policy     = true
+  ignore_public_acls      = true
+  restrict_public_buckets = true
+}
