@@ -8,17 +8,17 @@ resource "aws_iam_role" "github_deploy" {
 
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
-    Statement = [{
+    Statement = {
       Effect    = "Allow"
       Principal = { Federated = aws_iam_openid_connect_provider.github.arn }
       Action    = "sts:AssumeRoleWithWebIdentity"
-      Condition = {
+                  Condition = {
         StringEquals = {
           "token.actions.githubusercontent.com:aud" = "sts.amazonaws.com"
-          "token.actions.githubusercontent.com:sub" = "repo:ganascyber/aws-devops-lab:ref:refs/heads/main"
+          "token.actions.githubusercontent.com:sub" = "repo:ganascyber@287483120/aws-devops-lab@1459366198:ref:refs/heads/main"
         }
       }
-    }]
+      }
   })
 }
 
