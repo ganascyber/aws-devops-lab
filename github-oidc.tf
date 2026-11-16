@@ -15,7 +15,7 @@ resource "aws_iam_role" "github_deploy" {
       Condition = {
         StringEquals = {
           "token.actions.githubusercontent.com:aud" = "sts.amazonaws.com"
-          "token.actions.githubusercontent.com:sub" = "repo:ganacyber/aws-devops-lab:ref:refs/heads/main"
+          "token.actions.githubusercontent.com:sub" = "repo:ganascyber/aws-devops-lab:ref:refs/heads/main"
         }
       }
     }]
