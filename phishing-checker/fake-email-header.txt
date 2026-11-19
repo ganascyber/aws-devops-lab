@@ -1,0 +1,5 @@
+From: "IT Support" <support@paypa1-security.com>
+Authentication-Results: mx.google.com;
+       spf=fail smtp.mailfrom=paypa1-security.com;
+       dkim=fail header.d=paypa1-security.com;
+       dmarc=pass
